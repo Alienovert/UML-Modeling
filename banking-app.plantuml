@@ -1,0 +1,42 @@
+@startuml banking-app
+!define AWESOME class
+
+left to right direction
+skinparam actorstyle awesome
+
+actor "Client" as c
+actor "Bank" as b
+
+package "Banking App"{
+    usecase Login as UC1
+    usecase "Check Balance" as UC2
+    usecase "Verify Password" as UC3
+    usecase "Display Login Error" as UC4
+    usecase "Make Payments" as UC5
+    usecase "Verify Sufficient Funds" as UC6
+    usecase "Transfer Funds" as UC7
+    usecase "Pay from Checking" as UC8
+    usecase "Pay From Savings" as UC9
+    usecase "Set up Profile" as UC10
+    usecase "Go to Help" as UC11
+    usecase "Show Privacy Info" as UC12
+}
+
+c -- UC1
+c -- UC2
+c -- UC7
+c -- UC5
+c -- UC10
+b -- UC2
+b -- UC7
+b -- UC5
+UC1 ..> UC3
+UC4 <.. UC1
+UC7 ..> UC6
+UC5 ..> UC6
+UC8 <|-- UC5
+UC9 <|-- UC5
+UC10 <.. UC11
+UC10 <.. UC12
+
+@enduml
